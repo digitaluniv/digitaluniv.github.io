@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Digital University</title>
+    <link>https://digitaluniv.github.io/tags/</link>
+    <description>Recent content in Tags on Digital University</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>&amp;copy; Copyright 2018 digitaluniv</copyright>
+    <lastBuildDate>Sat, 03 Feb 2018 12:44:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://digitaluniv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Github</title>
+      <link>https://digitaluniv.github.io/tags/github/</link>
+      <pubDate>Sat, 03 Feb 2018 12:44:06 +0900</pubDate>
+      
+      <guid>https://digitaluniv.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://digitaluniv.github.io/tags/hugo/</link>
+      <pubDate>Sat, 03 Feb 2018 12:44:06 +0900</pubDate>
+      
+      <guid>https://digitaluniv.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

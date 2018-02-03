@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>HugoとGitHub PagesでWebページの公開（１） - Digital University</title>
+  <meta property="og:title" content="HugoとGitHub PagesでWebページの公開（１） - Digital University" />
+  <meta name="twitter:title" content="HugoとGitHub PagesでWebページの公開（１） - Digital University" />
+  <meta name="description" content="Hugo をインストールしてして、Webページを作成するところまで試します。 Webサイト構築 Hugoをインストールして、Webサイトを構築します。 H">
+  <meta property="og:description" content="Hugo をインストールしてして、Webページを作成するところまで試します。 Webサイト構築 Hugoをインストールして、Webサイトを構築します。 H">
+  <meta name="twitter:description" content="Hugo をインストールしてして、Webページを作成するところまで試します。 Webサイト構築 Hugoをインストールして、Webサイトを構築します。 H">
+  <meta name="author" content="digitaluniv"/>
+  <meta property="og:site_name" content="Digital University" />
+  <meta property="og:url" content="/post/hugo-1/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.34" />
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">Digital University</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/archives/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">HugoとGitHub PagesでWebページの公開（１）</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>February 2, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="/categories/hugo/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#folder"></use></svg>
+            Hugo
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/hugo/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#tag"></use></svg>
+            Hugo
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#webサイト構築">Webサイト構築</a>
+<ul>
+<li><a href="#hugoのインストール">Hugoのインストール</a></li>
+<li><a href="#hugoのサイト構築">Hugoのサイト構築</a></li>
+<li><a href="#テーマの導入">テーマの導入</a></li>
+</ul></li>
+<li><a href="#サイトの設定">サイトの設定</a>
+<ul>
+<li><a href="#configration">Configration</a></li>
+<li><a href="#archives-page">Archives page</a></li>
+<li><a href="#about-page">About page</a></li>
+<li><a href="#avator">avator</a></li>
+<li><a href="#記事の雛形">記事の雛形</a></li>
+</ul></li>
+<li><a href="#記事の作成と確認">記事の作成と確認</a>
+<ul>
+<li><a href="#記事の作成">記事の作成</a></li>
+<li><a href="#記事の確認">記事の確認</a></li>
+<li><a href="#記事の生成">記事の生成</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<p>Hugo をインストールしてして、Webページを作成するところまで試します。</p>
+
+<h1 id="webサイト構築">Webサイト構築</h1>
+
+<hr />
+
+<p>Hugoをインストールして、Webサイトを構築します。</p>
+
+<h2 id="hugoのインストール">Hugoのインストール</h2>
+
+<p>HomebrewでHugoとtreeコマンドをインストールします。</p>
+
+<pre><code>$ brew install hugo
+$ brew install tree
+</code></pre>
+
+<h2 id="hugoのサイト構築">Hugoのサイト構築</h2>
+
+<p>「hugo_site」という名前のサイトを作ります。。</p>
+
+<pre><code>$ hugo new site hugo_site
+$ cd hugo_site
+$ tree
+.
+├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes
+</code></pre>
+
+<h2 id="テーマの導入">テーマの導入</h2>
+
+<p>公式サイトからサイトのテンプレートを選びます
+今回は「Whiteplain」を選びました。</p>
+
+<pre><code>$ git clone https://github.com/taikii/whiteplain.git themes/whiteplain
+</code></pre>
+
+<h1 id="サイトの設定">サイトの設定</h1>
+
+<hr />
+
+<p>サイトの各種設定をします。</p>
+
+<h2 id="configration">Configration</h2>
+
+<p>Config.tomlを編集します。
+このサイトの設定例を掲載します。</p>
+
+<pre><code>baseurl = &quot;https://digitaluniv.github.io/&quot;
+title = &quot;Digital University&quot;
+theme = &quot;whiteplain&quot;
+languageCode = &quot;ja-jp&quot;
+hasCJKLanguage = true
+
+copyright = &quot;&amp;copy; Copyright 2018 digitaluniv&quot;
+
+[params]
+
+#dateFormat = &quot;January 2, 2006&quot;
+
+[params.author]
+name = &quot;digitaluniv&quot;
+avatar = &quot;/digitaluniv.jpg&quot;
+github = &quot;digitaluniv&quot;
+
+[taxonomies]
+category = &quot;categories&quot;
+tag = &quot;tags&quot;
+series = &quot;series&quot;
+
+[[menu.main]]
+name = &quot;Categories&quot;
+identifier = &quot;categories&quot;
+url = &quot;/categories/&quot;
+weight = 1
+[[menu.main]]
+name = &quot;Tags&quot;
+identifier = &quot;tags&quot;
+url = &quot;/tags/&quot;
+weight = 2
+[[menu.main]]
+name = &quot;Archives&quot;
+identifier = &quot;archives&quot;
+url = &quot;/archives/&quot;
+weight = 3
+[[menu.main]]
+name = &quot;About&quot;
+identifier = &quot;about&quot;
+url = &quot;/about/&quot;
+weight = 4
+
+[[menu.footer]]
+name = &quot;About&quot;
+weight = 1
+identifier = &quot;about&quot;
+url = &quot;/about/&quot;
+</code></pre>
+
+<h2 id="archives-page">Archives page</h2>
+
+<p>contentフォルダ内にarchivesフォルダを作り空の_index.mdファイルを作ります。</p>
+
+<pre><code>hugo_site
+└── content
+    └── archives
+        └── _index.md
+</code></pre>
+
+<h2 id="about-page">About page</h2>
+
+<p>contentフォルダ内にaboutフォルダを作り_index.mdファイルにこのサイトの概要を書きます。</p>
+
+<pre><code>hugo_site
+└── content
+    └── about
+        └── _index.md
+</code></pre>
+
+<h2 id="avator">avator</h2>
+
+<p>作者のアバターを avatar = &ldquo;/digitaluniv.jpg&rdquo; で指定しましたので、 staticフォルダーに画像を入れておきます。</p>
+
+<pre><code>hugo_site
+└── static
+    └── digitaluniv.jpg
+</code></pre>
+
+<h2 id="記事の雛形">記事の雛形</h2>
+
+<p>archetypesフォルダのdefolt.mdを編集します。</p>
+
+<pre><code>---
+title: &quot;{{ replace .TranslationBaseName &quot;-&quot; &quot; &quot; | title }}&quot;
+date: {{ .Date }}
+draft: true
+categories: [&quot;x&quot;, &quot;y&quot;]
+tags: [&quot;x&quot;, &quot;y&quot;]
+---
+</code></pre>
+
+<h1 id="記事の作成と確認">記事の作成と確認</h1>
+
+<hr />
+
+<p>記事を作成してWebサイトをローカルで確認します。</p>
+
+<h2 id="記事の作成">記事の作成</h2>
+
+<p>hugo_siteのフォルダー内に移り、hugo new post/hoge.mdコマンドで記事を作成します。</p>
+
+<p>ここでは、test.mdというファイルを作りました。</p>
+
+<pre><code>$ hugo new post/test.md
+
+---
+title: &quot;Test&quot;
+date: 2018-02-03T00:04:17+09:00
+draft: true
+categories: [&quot;x&quot;, &quot;y&quot;]
+tags: [&quot;x&quot;, &quot;y&quot;]
+---
+</code></pre>
+
+<p>categoriesやtagsをセットして、本文はマークダウン形式で書いていきます。</p>
+
+<h2 id="記事の確認">記事の確認</h2>
+
+<p>ローカルで記事の確認を行います。</p>
+
+<pre><code>$ hugo server -D
+</code></pre>
+
+<p>-Dオプションでドラフト記事もビルドしてくれます。</p>
+
+<h2 id="記事の生成">記事の生成</h2>
+
+<p>記事が完成しましたら、draft: trueを外します。</p>
+
+<pre><code>$ hugo
+</code></pre>
+
+<p>これで記事が生成されました。</p>
+
+    </article>
+
+    
+<ul class="article-share">
+  <li>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </li>
+  <li>
+    <div class="fb-share-button" data-href="https://digitaluniv.github.io/post/hugo-1/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+  </li>
+  <li>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <g:plus action="share"></g:plus>
+  </li>
+  <li>
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </li>
+  <li>
+    <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+    <script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </li>
+</ul>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/post/hugo-2/" data-toggle="tooltip" data-placement="top" title="HugoとGitHub PagesでWebページの公開（2）">&lt; Newer</a>
+      </li>
+      <li class="pager-older pager-noitem">Older &gt;</li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2018 digitaluniv</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+  </div>
+</div>
+<script src="/js/script.js"></script>
+<script src="/js/custom.js"></script>
+
+
+</body>
+</html>
