@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Dockerの基本 - Digital University</title>
+  <meta property="og:title" content="Dockerの基本 - Digital University" />
+  <meta name="twitter:title" content="Dockerの基本 - Digital University" />
+  <meta name="description" content="Dockerを導入し、Docker Hubのイメージを取得し、コンテナとして実行。イメージを改良して、新しいイメージとしてDocker Hubに">
+  <meta property="og:description" content="Dockerを導入し、Docker Hubのイメージを取得し、コンテナとして実行。イメージを改良して、新しいイメージとしてDocker Hubに">
+  <meta name="twitter:description" content="Dockerを導入し、Docker Hubのイメージを取得し、コンテナとして実行。イメージを改良して、新しいイメージとしてDocker Hubに">
+  <meta name="author" content="digitaluniv"/>
+  <meta property="og:site_name" content="Digital University" />
+  <meta property="og:url" content="/post/docker-1/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.34" />
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">Digital University</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/archives/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Dockerの基本</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>February 5, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="/categories/docker/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#folder"></use></svg>
+             Docker
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/docker/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#tag"></use></svg>
+            Docker
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#docker-toolboxのインストール">Docker Toolboxのインストール</a>
+<ul>
+<li><a href="#インストール">インストール</a></li>
+<li><a href="#インストールの確認">インストールの確認</a></li>
+<li><a href="#公開されたイメージの実行">公開されたイメージの実行</a></li>
+</ul></li>
+<li><a href="#新しいイメージの作成">新しいイメージの作成</a>
+<ul>
+<li><a href="#dockerfileの作成">Dockerfileの作成</a></li>
+<li><a href="#イメージの作成">イメージの作成</a></li>
+<li><a href="#イメージの実行">イメージの実行</a></li>
+</ul></li>
+<li><a href="#docker-hubへの登録">Docker Hubへの登録</a>
+<ul>
+<li><a href="#アカウントの作成">アカウントの作成</a></li>
+<li><a href="#リポジトリの作成">リポジトリの作成</a></li>
+<li><a href="#イメージのタグ付">イメージのタグ付</a></li>
+<li><a href="#docker-hub-への登録">Docker Hub への登録</a></li>
+</ul></li>
+<li><a href="#新しいイメージの共有">新しいイメージの共有</a>
+<ul>
+<li><a href="#ローカルマシンのイメージの削除">ローカルマシンのイメージの削除</a></li>
+<li><a href="#イメージのダインロード">イメージのダインロード</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<p>Dockerを導入し、Docker Hubのイメージを取得し、コンテナとして実行。イメージを改良して、新しいイメージとしてDocker Hubに送信し、イメージを共有するまでを試します。
+詳細は<a href="http://docs.docker.jp/mac/last_page.html">こちら</a>になります。
+このページは、自分のMacで実行したときの覚書です。</p>
+
+<h1 id="docker-toolboxのインストール">Docker Toolboxのインストール</h1>
+
+<h2 id="インストール">インストール</h2>
+
+<p><a href="https://www.docker.com/community-edition">Docker Toolboxのfree</a>ページからインストールします。インストール対象はデフォルトのままとします。</p>
+
+<h2 id="インストールの確認">インストールの確認</h2>
+
+<p>LaunchpadからDocker Quickstart Terminalを起動します。ターミナルからHello-worldを動かして見ます。</p>
+
+<pre><code>$ docker run hello-world
+</code></pre>
+
+<p>ローカルにhello-worldのイメージがないので、Docker Hubからダウンロードし、コンテナにイメージを読み込んで実行されます。</p>
+
+<h2 id="公開されたイメージの実行">公開されたイメージの実行</h2>
+
+<p>Docker Hubからwhalesayというイメージを読み込み実行してみます。</p>
+
+<pre><code>$ docker run docker/whalesay cowsey hello!
+</code></pre>
+
+<p>くじらが hello! と言ってますね。</p>
+
+<p>システム上にあるイメージを示して見ます。</p>
+
+<pre><code>$ docker images
+</code></pre>
+
+<p>hello-worldとdocker/whalesayがコピーされていますね。</p>
+
+<h1 id="新しいイメージの作成">新しいイメージの作成</h1>
+
+<h2 id="dockerfileの作成">Dockerfileの作成</h2>
+
+<p>適当なディレクトリを作り、Dockerfileを作ります</p>
+
+<pre><code>$ mkdir docker-test
+$ cd docker-test
+$ touch Dockerfile
+$ open -e Dockerfile
+</code></pre>
+
+<p>エディタで、以下のインストラクションを記述します。</p>
+
+<pre><code>FROM docker /whalesay:latest
+RUN apu-get -y updaye &amp;&amp; apt-get install -y fortunes
+CMD /usr/games/fortune -a | cowsey
+</code></pre>
+
+<p>これで、whalesayのイメージを読み込み、fortuneという賢いことを喋るアプリをインストールし、cowseyで表示します。</p>
+
+<h2 id="イメージの作成">イメージの作成</h2>
+
+<p>docker-whaleというイメージを作成します。最後のピリオドを忘れないようにしましょう。</p>
+
+<pre><code>$ docker build -t docker-whale .
+</code></pre>
+
+<p>作成が終了しましたら、イメージの一覧を表示してみます。</p>
+
+<pre><code>$ docker images
+</code></pre>
+
+<h2 id="イメージの実行">イメージの実行</h2>
+
+<p>新しいイメージを実行します。</p>
+
+<pre><code>$ docker run docker-whale
+</code></pre>
+
+<h1 id="docker-hubへの登録">Docker Hubへの登録</h1>
+
+<h2 id="アカウントの作成">アカウントの作成</h2>
+
+<p><a href="https://hub.docker.com">Docker Hub</a>を開きます。新しくユーザ名を決め、メールアドレスとパスワードを入力しサインアップします。しばらくするとメールが届きますので、メールアドレスの確認を行います。</p>
+
+<h2 id="リポジトリの作成">リポジトリの作成</h2>
+
+<p>Docker Hubのページからログインし、リポジトリの作成「Create Repository」をクリックします。</p>
+
+<p>リポジトリ名をdocker-whaleとし、簡単な説明を加え、Visibilityはpublicとしてリポジトリを作成します。</p>
+
+<h2 id="イメージのタグ付">イメージのタグ付</h2>
+
+<p>Dockerクイックスタート・ターミナルからタグ付をします。</p>
+
+<pre><code>$ docker tag ************ ユーザ名/docker-whale:latest
+</code></pre>
+
+<p>************ は docker image コマンドで表示されるIMAGE IDです。</p>
+
+<p>新しくタグ付けされますと、REPOSITRYがユーザ名/docker-whaleに変わっているはずです。</p>
+
+<h2 id="docker-hub-への登録">Docker Hub への登録</h2>
+
+<p>Docker Hub にログインします。</p>
+
+<pre><code>$ docker login --username=ユーザ名 --email=メールアドレス
+</code></pre>
+
+<p>パスワードを求められますので、入力してください。</p>
+
+<p>新しいイメージをリポジトリに送信します。</p>
+
+<pre><code>$ docker push ユーザ名/docker-whale
+</code></pre>
+
+<p>自分のDocker Hubのページに新しいイメージの情報が表示されます。</p>
+
+<h1 id="新しいイメージの共有">新しいイメージの共有</h1>
+
+<h2 id="ローカルマシンのイメージの削除">ローカルマシンのイメージの削除</h2>
+
+<p>一端、ユーザ名/docker-whaleとdocker-whaleを削除します。</p>
+
+<pre><code>$ docker rmi -f ユーザ名/docker-whale
+$ docker rmi -f docker-whale
+</code></pre>
+
+<p>無くなっていることをdocker imagesコマンドで確認します。</p>
+
+<h2 id="イメージのダインロード">イメージのダインロード</h2>
+
+<p>リポジトリから新しいイメージを取得します</p>
+
+<pre><code>$ docker run ユーザ名/docker-whale
+</code></pre>
+
+<p>イメージがダウンロードされ、実行されます。</p>
+
+    </article>
+
+    
+<ul class="article-share">
+  <li>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </li>
+  <li>
+    <div class="fb-share-button" data-href="https://digitaluniv.github.io/post/docker-1/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+  </li>
+  <li>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <g:plus action="share"></g:plus>
+  </li>
+  <li>
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </li>
+  <li>
+    <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+    <script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </li>
+</ul>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="/post/estonia-1/" data-toggle="tooltip" data-placement="top" title="e-Residencyカードの申請と受け取り">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2018 digitaluniv</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+  </div>
+</div>
+<script src="/js/script.js"></script>
+<script src="/js/custom.js"></script>
+
+
+</body>
+</html>
