@@ -141,28 +141,22 @@
 <p>&ldquo;HugoとGitHub PagesでWebページの公開（１）&rdquo;で作成したpiblicディレクトリ配下のファイルをローカルのusername.github.ioへ移し、GitHubへpushするスクリプトをローカルWebサイトのディレクトリに作ります。</p>
 
 <pre><code>#!/bin/bash
-
 echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
 
-# Build the project.
+# Build the project
 hugo
 
 # Copy public
-cp -p -f -R public/* ../username.github.io/
+cp -p -f -R public/* ../digitaluniv.github.io/
 
-＃ Push repos.
-
-cd ../username.github.io/
-
+# Push repos
+cd ../digitaluniv.github.io/
 git add --all
-
 msg=&quot;rebuilding site `date`&quot;
 if [ $# -eq 1 ]
 then msg=&quot;$1&quot;
 fi
-
 git commit -m &quot;$msg&quot;
-
 git push origin master
 </code></pre>
 
