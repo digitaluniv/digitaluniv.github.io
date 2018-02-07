@@ -91,7 +91,7 @@
       
 
 <p>Dockerを導入し、Docker Hubのイメージを取得し、コンテナとして実行。イメージを改良して、新しいイメージとしてDocker Hubに送信し、イメージを共有するまでを試します。
-詳細は<a href="http://docs.docker.jp/mac/last_page.html">こちら</a>になります。
+詳細は<a href="http://docs.docker.jp/mac/index.html">こちら</a>になります。
 このページは、自分のMacで実行したときの覚書です。</p>
 
 <h1 id="docker-toolboxのインストール">Docker Toolboxのインストール</h1>
@@ -100,13 +100,39 @@
 
 <h2 id="インストール">インストール</h2>
 
-<p><a href="https://www.docker.com/community-edition">Docker Toolboxのfree</a>ページからインストールします。インストール対象はデフォルトのままとします。</p>
+<p><a href="https://www.docker.com/community-edition">Docker Toolboxのfree</a>ページからDocker CE for Macをインストールします。インストール対象はデフォルトのままとします。</p>
 
 <h2 id="インストールの確認">インストールの確認</h2>
 
-<p>LaunchpadからDocker Quickstart Terminalを起動します。ターミナルからHello-worldを動かして見ます。</p>
+<p>LaunchpadからDockerを起動します。ターミナルからHello-worldを動かします。</p>
 
 <pre><code>$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+ca4f61b1923c: Pull complete
+Digest: sha256:66ef312bbac49c39a89aa9bcc3cb4f3c9e7de3788c944158df3ee0176d32b751
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+1. The Docker client contacted the Docker daemon.
+2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+(amd64)
+3. The Docker daemon created a new container from that image which runs the
+executable that produces the output you are currently reading.
+4. The Docker daemon streamed that output to the Docker client, which sent it
+to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+$ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+https://cloud.docker.com/
+
+For more examples and ideas, visit:
+https://docs.docker.com/engine/userguide/
 </code></pre>
 
 <p>ローカルにhello-worldのイメージがないので、Docker Hubからダウンロードし、コンテナにイメージを読み込んで実行されます。</p>
@@ -115,7 +141,21 @@
 
 <p>Docker Hubからwhalesayというイメージを読み込み実行してみます。</p>
 
-<pre><code>$ docker run docker/whalesay cowsey hello!
+<pre><code>$ docker run docker/whalesay cowsay hello!
+
+&lt; hello! &gt;
+--------
+   \
+    \
+     \
+                   ##        .
+             ## ## ##       ==
+          ## ## ## ##      ===
+     /&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;___/ ===
+~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+     \______ o          __/
+      \    \        __/
+       \____\______/
 </code></pre>
 
 <p>くじらが hello! と言ってますね。</p>
@@ -126,6 +166,11 @@
 </code></pre>
 
 <p>hello-worldとdocker/whalesayがコピーされていますね。</p>
+
+<pre><code>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              f2a91732366c        2 months ago        1.85kB
+docker/whalesay     latest              6b362a9f73eb        2 years ago         247MB
+</code></pre>
 
 <h1 id="新しいイメージの作成">新しいイメージの作成</h1>
 
@@ -143,9 +188,9 @@ $ open -e Dockerfile
 
 <p>エディタで、以下のインストラクションを記述します。</p>
 
-<pre><code>FROM docker /whalesay:latest
-RUN apu-get -y updaye &amp;&amp; apt-get install -y fortunes
-CMD /usr/games/fortune -a | cowsey
+<pre><code>FROM docker/whalesay:latest
+RUN apt-get -y update &amp;&amp; apt-get install -y fortunes
+CMD /usr/games/fortune -a | cowsay
 </code></pre>
 
 <p>これで、whalesayのイメージを読み込み、fortuneという賢いことを喋るアプリをインストールし、cowseyで表示します。</p>
@@ -160,6 +205,10 @@ CMD /usr/games/fortune -a | cowsey
 <p>作成が終了しましたら、イメージの一覧を表示してみます。</p>
 
 <pre><code>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+docker-whale        latest              2c8e73ab9782        About a minute ago   277MB
+hello-world         latest              f2a91732366c        2 months ago         1.85kB
+docker/whalesay     latest              6b362a9f73eb        2 years ago          247MB
 </code></pre>
 
 <h2 id="イメージの実行">イメージの実行</h2>
@@ -167,6 +216,22 @@ CMD /usr/games/fortune -a | cowsey
 <p>新しいイメージを実行します。</p>
 
 <pre><code>$ docker run docker-whale
+ _________________________________________
+/ Atlanta makes it against the law to tie \
+| a giraffe to a telephone pole or street |
+\ lamp.                                   /
+ -----------------------------------------
+    \
+     \
+      \
+                  ##        .
+            ## ## ##       ==
+         ## ## ## ##      ===
+     /&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;___/ ===
+~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+     \______ o          __/
+      \    \        __/
+       \____\______/
 </code></pre>
 
 <h1 id="docker-hubへの登録">Docker Hubへの登録</h1>
@@ -185,7 +250,7 @@ CMD /usr/games/fortune -a | cowsey
 
 <h2 id="イメージのタグ付">イメージのタグ付</h2>
 
-<p>Dockerクイックスタート・ターミナルからタグ付をします。</p>
+<p>ターミナルからタグ付をします。</p>
 
 <pre><code>$ docker tag ************ ユーザ名/docker-whale:latest
 </code></pre>
@@ -198,7 +263,7 @@ CMD /usr/games/fortune -a | cowsey
 
 <p>Docker Hub にログインします。</p>
 
-<pre><code>$ docker login --username=ユーザ名 --email=メールアドレス
+<pre><code>$ docker login --username=ユーザ名
 </code></pre>
 
 <p>パスワードを求められますので、入力してください。</p>
