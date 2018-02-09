@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://digitaluniv.github.io/post/tensorflow-1/</loc>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://digitaluniv.github.io/post/docker-1/</loc>
     <lastmod>2018-02-05T23:02:27+09:00</lastmod>
   </url>
@@ -37,7 +42,7 @@
   
   <url>
     <loc>https://digitaluniv.github.io/</loc>
-    <lastmod>2018-02-05T23:02:27+09:00</lastmod>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -49,7 +54,7 @@
   
   <url>
     <loc>https://digitaluniv.github.io/tags/docker/</loc>
-    <lastmod>2018-02-05T23:02:27+09:00</lastmod>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -97,7 +102,7 @@
   
   <url>
     <loc>https://digitaluniv.github.io/post/</loc>
-    <lastmod>2018-02-05T23:02:27+09:00</lastmod>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -108,7 +113,19 @@
   
   <url>
     <loc>https://digitaluniv.github.io/tags/</loc>
-    <lastmod>2018-02-05T23:02:27+09:00</lastmod>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://digitaluniv.github.io/categories/tensorflow/</loc>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://digitaluniv.github.io/tags/tensorflow/</loc>
+    <lastmod>2018-02-08T22:45:48+09:00</lastmod>
     <priority>0</priority>
   </url>
   

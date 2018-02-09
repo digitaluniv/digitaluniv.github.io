@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Googleのobject detectionをDockerで動かす - Digital University</title>
+  <meta property="og:title" content="Googleのobject detectionをDockerで動かす - Digital University" />
+  <meta name="twitter:title" content="Googleのobject detectionをDockerで動かす - Digital University" />
+  <meta name="description" content="Docker上でGoogleのobJect detedctionを動かしてみます。 Docker Dockerfileの作成 インストール方法を参考に、Doc">
+  <meta property="og:description" content="Docker上でGoogleのobJect detedctionを動かしてみます。 Docker Dockerfileの作成 インストール方法を参考に、Doc">
+  <meta name="twitter:description" content="Docker上でGoogleのobJect detedctionを動かしてみます。 Docker Dockerfileの作成 インストール方法を参考に、Doc">
+  <meta name="author" content="digitaluniv"/>
+  <meta property="og:site_name" content="Digital University" />
+  <meta property="og:url" content="/post/tensorflow-1/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.34" />
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">Digital University</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/archives/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Googleのobject detectionをDockerで動かす</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>February 8, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="/categories/tensorflow/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#folder"></use></svg>
+            tensorflow
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/tensorflow/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#tag"></use></svg>
+            tensorflow
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/docker/">
+            <svg class="icon"><use xlink:href="/images/fa-solid.svg#tag"></use></svg>
+            docker
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#docker">Docker</a>
+<ul>
+<li><a href="#dockerfileの作成">Dockerfileの作成</a></li>
+<li><a href="#イメージの作成">イメージの作成</a></li>
+<li><a href="#イメージの実行">イメージの実行</a></li>
+</ul></li>
+<li><a href="#jupyterの実行">jupyterの実行</a>
+<ul>
+<li><a href="#ローカルホストへのアクセス">ローカルホストへのアクセス</a></li>
+<li><a href="#チュートリアルの実行">チュートリアルの実行</a></li>
+<li><a href="#終了操作">終了操作</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<p>Docker上でGoogleのobJect detedctionを動かしてみます。</p>
+
+<h1 id="docker">Docker</h1>
+
+<hr />
+
+<h2 id="dockerfileの作成">Dockerfileの作成</h2>
+
+<p><a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md">インストール方法</a>を参考に、Dockerfileを作成します。</p>
+
+<pre><code>$ mkdir object-detection
+$ cd object-detection
+$ touch Dockerfile
+</code></pre>
+
+<p>ubuntuですとエラーになりますので、ubuntu:16.04をインストールします。</p>
+
+<pre><code>FROM &quot;ubuntu:16.04&quot;
+
+RUN apt-get update &amp;&amp; yes | apt-get upgrade
+
+RUN mkdir -p /tensorflow/models
+
+RUN apt-get install -y git python-pip
+RUN easy_install -U pip
+
+RUN pip install tensorflow
+
+RUN apt-get install -y protobuf-compiler python-pil python-lxml
+
+RUN pip install jupyter
+RUN pip install matplotlib
+
+RUN git clone https://github.com/tensorflow/models.git /tensorflow/models
+
+WORKDIR /tensorflow/models/research
+
+RUN protoc object_detection/protos/*.proto --python_out=.
+
+RUN export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+
+RUN jupyter notebook --generate-config --allow-root
+RUN echo &quot;c.NotebookApp.password = u'sha1:6a3f528eec40:6e896b6e4828f525a6e20e5411cd1c8075d68619'&quot; &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+
+EXPOSE 8888
+
+CMD [&quot;jupyter&quot;, &quot;notebook&quot;, &quot;--allow-root&quot;, &quot;--notebook-dir=/tensorflow/models/research/object_detection&quot;, &quot;--ip='*'&quot;, &quot;--port=8888&quot;, &quot;--no-browser&quot;]
+</code></pre>
+
+<h2 id="イメージの作成">イメージの作成</h2>
+
+<p>object-detectionというイメージを作成します。最後のピリオドを忘れないようにしましょう。</p>
+
+<p>$ docker build -t tensorflow .</p>
+
+<h2 id="イメージの実行">イメージの実行</h2>
+
+<p>新しいイメージを実行します。</p>
+
+<p>$ docker run &ndash;name tensorflow -p 8888:8888 -d tensorflow</p>
+
+<h1 id="jupyterの実行">jupyterの実行</h1>
+
+<hr />
+
+<h2 id="ローカルホストへのアクセス">ローカルホストへのアクセス</h2>
+
+<p><a href="http://localhost:8888">http://localhost:8888</a>
+へアクセスします。
+パスワードが聞かれますので&rdquo;root&rdquo;と入力してください。</p>
+
+<h2 id="チュートリアルの実行">チュートリアルの実行</h2>
+
+<p>object_detection_tutorial.ipynb をオープンします。</p>
+
+<p>メニューのCell-&gt; Run all で実行されます。
+す。</p>
+
+<h2 id="終了操作">終了操作</h2>
+
+<p>Dockerを止めます。</p>
+
+<p>$ docker rm -f tensorflow</p>
+
+    </article>
+
+    
+<ul class="article-share">
+  <li>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </li>
+  <li>
+    <div class="fb-share-button" data-href="https://digitaluniv.github.io/post/tensorflow-1/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+  </li>
+  <li>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <g:plus action="share"></g:plus>
+  </li>
+  <li>
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </li>
+  <li>
+    <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+    <script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </li>
+</ul>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="/post/docker-1/" data-toggle="tooltip" data-placement="top" title="Dockerの基本">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2018 digitaluniv</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+  </div>
+</div>
+<script src="/js/script.js"></script>
+<script src="/js/custom.js"></script>
+
+
+</body>
+</html>

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&amp;copy; Copyright 2018 digitaluniv</copyright>
-    <lastBuildDate>Mon, 05 Feb 2018 23:02:27 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 08 Feb 2018 22:45:48 +0900</lastBuildDate>
     
 	<atom:link href="https://digitaluniv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Docker</title>
       <link>https://digitaluniv.github.io/tags/docker/</link>
-      <pubDate>Mon, 05 Feb 2018 23:02:27 +0900</pubDate>
+      <pubDate>Thu, 08 Feb 2018 22:45:48 +0900</pubDate>
       
       <guid>https://digitaluniv.github.io/tags/docker/</guid>
       <description></description>
@@ -54,6 +54,15 @@
       <pubDate>Sat, 03 Feb 2018 12:44:06 +0900</pubDate>
       
       <guid>https://digitaluniv.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tensorflow</title>
+      <link>https://digitaluniv.github.io/tags/tensorflow/</link>
+      <pubDate>Thu, 08 Feb 2018 22:45:48 +0900</pubDate>
+      
+      <guid>https://digitaluniv.github.io/tags/tensorflow/</guid>
       <description></description>
     </item>
     
