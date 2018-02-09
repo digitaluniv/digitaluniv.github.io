@@ -137,13 +137,15 @@ CMD [&quot;jupyter&quot;, &quot;notebook&quot;, &quot;--allow-root&quot;, &quot;
 
 <p>object-detectionというイメージを作成します。最後のピリオドを忘れないようにしましょう。</p>
 
-<p>$ docker build -t tensorflow .</p>
+<pre><code>$ docker build -t tensorflow .
+</code></pre>
 
 <h2 id="イメージの実行">イメージの実行</h2>
 
 <p>新しいイメージを実行します。</p>
 
-<p>$ docker run &ndash;name tensorflow -p 8888:8888 -d tensorflow</p>
+<pre><code>$ docker run --name tensorflow -p 8888:8888 -d tensorflow
+</code></pre>
 
 <h1 id="jupyterの実行">jupyterの実行</h1>
 
@@ -159,14 +161,14 @@ CMD [&quot;jupyter&quot;, &quot;notebook&quot;, &quot;--allow-root&quot;, &quot;
 
 <p>object_detection_tutorial.ipynb をオープンします。</p>
 
-<p>メニューのCell-&gt; Run all で実行されます。
-す。</p>
+<p>メニューのCell-&gt; Run all で実行されます。</p>
 
 <h2 id="終了操作">終了操作</h2>
 
 <p>Dockerを止めます。</p>
 
-<p>$ docker rm -f tensorflow</p>
+<pre><code>$ docker rm -f tensorflow
+</code></pre>
 
     </article>
 
