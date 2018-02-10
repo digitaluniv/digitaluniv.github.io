@@ -99,7 +99,8 @@ $ cd object-detection
 $ touch Dockerfile
 </code></pre>
 
-<p>ubuntuですとエラーになりますので、ubuntu:16.04をインストールします。</p>
+<p>ubuntuですとエラーになりますので、ubuntu:16.04をインストールします。
+結果ラベルのフォントにmsフォントを使用していますのでインストールしています。</p>
 
 <pre><code>FROM &quot;ubuntu:16.04&quot;
 
@@ -108,6 +109,10 @@ RUN apt-get update &amp;&amp; yes | apt-get upgrade
 RUN mkdir -p /tensorflow/models
 
 RUN apt-get install -y git python-pip
+
+RUN apt-get install -y fontconfig
+RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+RUN apt-get install -y --quiet ttf-mscorefonts-installer
 RUN easy_install -U pip
 
 RUN pip install tensorflow
@@ -162,6 +167,34 @@ CMD [&quot;jupyter&quot;, &quot;notebook&quot;, &quot;--allow-root&quot;, &quot;
 <p>object_detection_tutorial.ipynb をオープンします。</p>
 
 <p>メニューのCell-&gt; Run all で実行されます。</p>
+
+
+<figure class="center">
+    
+        <img src="/images/dog-1.png" width="713" height="450" />
+    
+    
+    <figcaption>
+        <h4>Dog</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+
+<figure class="center">
+    
+        <img src="/images/kite-1.png" width="697" height="470" />
+    
+    
+    <figcaption>
+        <h4>Kite &amp; Person</h4>
+        
+    </figcaption>
+    
+</figure>
+
 
 <h2 id="終了操作">終了操作</h2>
 
