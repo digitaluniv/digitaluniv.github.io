@@ -100,7 +100,8 @@ $ touch Dockerfile
 </code></pre>
 
 <p>ubuntuですとエラーになりますので、ubuntu:16.04をインストールします。
-結果ラベルのフォントにmsフォントを使用していますのでインストールしています。</p>
+結果ラベルのフォントにmsフォントを使用していますのでインストールしています。
+PYTHONPATHはENVで設定しました。（RUN export PYTHONPATH=$PYTHONPATH:  &hellip;.. では設定出来ませんでした。）</p>
 
 <pre><code>FROM &quot;ubuntu:16.04&quot;
 
@@ -130,7 +131,7 @@ WORKDIR /tensorflow/models/research
 
 RUN protoc object_detection/protos/*.proto --python_out=.
 
-RUN export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+ENV PYTHONPATH $PYTHONPATH:/tensorflow/models/research:/tensorflow/models/research/slim
 
 RUN jupyter notebook --generate-config --allow-root
 RUN echo &quot;c.NotebookApp.password = u'sha1:6a3f528eec40:6e896b6e4828f525a6e20e5411cd1c8075d68619'&quot; &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
