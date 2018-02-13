@@ -6,9 +6,9 @@
   <title>MNISTをDockerで動かす - Digital University</title>
   <meta property="og:title" content="MNISTをDockerで動かす - Digital University" />
   <meta name="twitter:title" content="MNISTをDockerで動かす - Digital University" />
-  <meta name="description" content="docker Dockerfile すぎゃーんさんのメモをみてると、色々と勉強になります。 今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。 Dockerfile">
-  <meta property="og:description" content="docker Dockerfile すぎゃーんさんのメモをみてると、色々と勉強になります。 今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。 Dockerfile">
-  <meta name="twitter:description" content="docker Dockerfile すぎゃーんさんのメモをみてると、色々と勉強になります。 今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。 Dockerfile">
+  <meta name="description" content="Docker すぎゃーんさんのメモをみてると、色々と勉強になります。 今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。 Dockerfile ま">
+  <meta property="og:description" content="Docker すぎゃーんさんのメモをみてると、色々と勉強になります。 今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。 Dockerfile ま">
+  <meta name="twitter:description" content="Docker すぎゃーんさんのメモをみてると、色々と勉強になります。 今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。 Dockerfile ま">
   <meta name="author" content="digitaluniv"/>
   <meta property="og:site_name" content="Digital University" />
   <meta property="og:url" content="/post/tensorflow-2/" />
@@ -66,15 +66,13 @@
       
       
 
-<h1 id="docker">docker</h1>
-
-<h2 id="dockerfile">Dockerfile</h2>
+<h1 id="docker">Docker</h1>
 
 <p>すぎゃーんさんのメモをみてると、色々と勉強になります。</p>
 
 <p>今回は、ベーシックなところで、MNISTをDockerでインストールしてみます。</p>
 
-<h2 id="dockerfile-1">Dockerfile</h2>
+<h2 id="dockerfile">Dockerfile</h2>
 
 <p>まずは、こんな感じです</p>
 
@@ -100,7 +98,7 @@ EXPOSE 8000
 CMD [ &quot;gunicorn&quot;, &quot;main:app&quot;, &quot;--log-file=-&quot;, &quot;--bind=0.0.0.0:8000&quot; ]
 </code></pre>
 
-<h1 id="起動">起動</h1>
+<h2 id="起動">起動</h2>
 
 <p>DockerfileをBuildしてRunしましょう。</p>
 
