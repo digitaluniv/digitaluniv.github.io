@@ -52,25 +52,19 @@
   </url>
   
   <url>
-    <loc>https://digitaluniv.github.io/tags/docker/</loc>
-    <lastmod>2018-02-13T22:11:28+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://digitaluniv.github.io/categories/docker/</loc>
     <lastmod>2018-02-05T23:02:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://digitaluniv.github.io/tags/e-residency/</loc>
-    <lastmod>2018-02-04T08:35:05+09:00</lastmod>
+    <loc>https://digitaluniv.github.io/tags/docker/</loc>
+    <lastmod>2018-02-13T22:11:28+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://digitaluniv.github.io/tags/estonia/</loc>
+    <loc>https://digitaluniv.github.io/tags/e-residency/</loc>
     <lastmod>2018-02-04T08:35:05+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -82,13 +76,19 @@
   </url>
   
   <url>
+    <loc>https://digitaluniv.github.io/tags/estonia/</loc>
+    <lastmod>2018-02-04T08:35:05+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://digitaluniv.github.io/tags/github/</loc>
     <lastmod>2018-02-03T12:44:06+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://digitaluniv.github.io/categories/hogo/</loc>
+    <loc>https://digitaluniv.github.io/categories/hugo/</loc>
     <lastmod>2018-02-03T12:44:06+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -96,12 +96,6 @@
   <url>
     <loc>https://digitaluniv.github.io/tags/hugo/</loc>
     <lastmod>2018-02-03T12:44:06+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://digitaluniv.github.io/categories/hugo/</loc>
-    <lastmod>2018-02-02T22:13:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -123,13 +117,13 @@
   </url>
   
   <url>
-    <loc>https://digitaluniv.github.io/tags/tensorflow/</loc>
+    <loc>https://digitaluniv.github.io/categories/tensorflow/</loc>
     <lastmod>2018-02-13T22:11:28+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://digitaluniv.github.io/categories/tensorflow/</loc>
+    <loc>https://digitaluniv.github.io/tags/tensorflow/</loc>
     <lastmod>2018-02-13T22:11:28+09:00</lastmod>
     <priority>0</priority>
   </url>
