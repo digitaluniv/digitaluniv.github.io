@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&amp;copy; Copyright 2018 digitaluniv</copyright>
-    <lastBuildDate>Tue, 13 Feb 2018 22:11:28 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 18 Feb 2018 09:48:20 +0900</lastBuildDate>
     
 	<atom:link href="https://digitaluniv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Docker</title>
       <link>https://digitaluniv.github.io/tags/docker/</link>
-      <pubDate>Tue, 13 Feb 2018 22:11:28 +0900</pubDate>
+      <pubDate>Sun, 18 Feb 2018 09:48:20 +0900</pubDate>
       
       <guid>https://digitaluniv.github.io/tags/docker/</guid>
       <description></description>
@@ -45,6 +45,15 @@
       <pubDate>Sat, 03 Feb 2018 12:44:06 +0900</pubDate>
       
       <guid>https://digitaluniv.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heroku</title>
+      <link>https://digitaluniv.github.io/tags/heroku/</link>
+      <pubDate>Sun, 18 Feb 2018 09:48:20 +0900</pubDate>
+      
+      <guid>https://digitaluniv.github.io/tags/heroku/</guid>
       <description></description>
     </item>
     

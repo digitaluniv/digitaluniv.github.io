@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&amp;copy; Copyright 2018 digitaluniv</copyright>
-    <lastBuildDate>Tue, 13 Feb 2018 22:11:28 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 18 Feb 2018 09:48:20 +0900</lastBuildDate>
     
 	<atom:link href="https://digitaluniv.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HerokuでDockerを動かす</title>
+      <link>https://digitaluniv.github.io/post/heroku-1/</link>
+      <pubDate>Sun, 18 Feb 2018 09:48:20 +0900</pubDate>
+      
+      <guid>https://digitaluniv.github.io/post/heroku-1/</guid>
+      <description>HEROKUは、Webサービスを公開するために必要なものを用意してくれるPssS(Platform as a Service）です。１サービスであれ</description>
+    </item>
     
     <item>
       <title>MNISTをDockerで動かす</title>
