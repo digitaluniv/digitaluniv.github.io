@@ -95,17 +95,17 @@ RUN npm install
 
 RUN npm run postinstall
 
-EXPOSE 8000
-
-CMD [ &quot;gunicorn&quot;, &quot;main:app&quot;, &quot;--log-file=-&quot;, &quot;--bind=0.0.0.0:8000&quot; ]
+CMD gunicorn main:app --log-file=- --bind=0.0.0.0:$PORT
 </code></pre>
+
+<p>あとでHEROKUにデプロイする予定なので、$PORTをバインドしておきます。</p>
 
 <h2 id="起動">起動</h2>
 
 <p>DockerfileをBuildしてRunしましょう。</p>
 
 <pre><code>docker build -t mnist .
-docker run --name mnist -p 8000:8000 -d mnist
+docker run --name mnist -e &quot;PORT=8000&quot; p 8000:8000 -d mnist
 </code></pre>
 
 <p>あとは、localhost:8000 にアクセスしてみて下さい。</p>
