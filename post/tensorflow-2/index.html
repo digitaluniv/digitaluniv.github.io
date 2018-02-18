@@ -104,8 +104,8 @@ CMD gunicorn main:app --log-file=- --bind=0.0.0.0:$PORT
 
 <p>DockerfileをBuildしてRunしましょう。</p>
 
-<pre><code>docker build -t mnist .
-docker run --name mnist -e &quot;PORT=8000&quot; p 8000:8000 -d mnist
+<pre><code>$ docker build -t mnist .
+$ docker run --name mnist -e &quot;PORT=8000&quot; -p 8000:8000 -d mnist
 </code></pre>
 
 <p>あとは、localhost:8000 にアクセスしてみて下さい。</p>
